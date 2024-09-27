@@ -1,0 +1,63 @@
+# .github/workflows/branch_protection.yml
+
+name: Branch Protection
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  enforce_review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Enforce Branch Protection
+        uses: actions/github-script@v6
+        env:
+          BRANCH_NAME: main  # Or your default branch name
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            try {
+              // Get the current branch protection settings
+              const currentProtection = await github.rest.repos.getBranchProtection({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                branch: process.env.BRANCH_NAME
+              })
+
+              // Update the protection settings (modify as needed)
+              const updatedProtection = {
+                ...currentProtection.data, // Keep existing settings
+                required_status_checks: {
+                  strict: true,
+                  contexts: ["Deploy to Firebase Hosting on PR"]
+                },
+                required_pull_request_reviews: {
+                  required_approving_review_count: 1,
+                  dismiss_stale_reviews: true,
+                  require_code_owner_reviews: false,
+                  restrict_dismissals: true,
+                  dismissal_restrictions: {
+                    users: ["jono-rams"],
+                    teams: []
+                  }
+                },
+                enforce_admins: true,
+              };
+
+              // Update the branch protection
+              await github.rest.repos.updateBranchProtection({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                branch: process.env.BRANCH_NAME,
+                ...updatedProtection
+              })
+
+              console.log(`Branch protection updated for ${process.env.BRANCH_NAME}`)
+            } catch (error) {
+              core.setFailed(`Error updating branch protection: ${error.message}`)
+            }
