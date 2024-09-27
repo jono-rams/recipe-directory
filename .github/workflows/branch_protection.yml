@@ -2,6 +2,11 @@
 
 name: Branch Protection
 
+permissions:
+  contents: read  # To read the repository's contents
+  pull-requests: write  # To interact with pull requests
+  checks: write # To update status checks
+
 on:
   push:
     branches:
