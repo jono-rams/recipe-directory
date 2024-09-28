@@ -5,7 +5,7 @@ import { getFirestore } from "firebase/firestore";
 import './index.css';
 import App from './App';
 
-let firebaseConfig = {
+const firebaseConfig = {
   apiKey: "YOUR_FIREBASE_API_KEY",
   authDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
   projectId: "YOUR_FIREBASE_PROJECT_ID",
@@ -13,6 +13,8 @@ let firebaseConfig = {
   messagingSenderId: "YOUR_FIREBASE_MESSAGE_SENDER_ID",
   appId: "YOUR_FIREBASE_APP_ID",
 };
+
+
 
 const fb = initializeApp(firebaseConfig);
 const db = getFirestore(fb);
