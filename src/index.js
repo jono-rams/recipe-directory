@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import './index.css';
 import App from './App';
+import { DbContext } from './dbContext';
 
 const firebaseConfig = {
   apiKey: "YOUR_FIREBASE_API_KEY",
@@ -20,7 +21,9 @@ const db = getFirestore(fb);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App db={db} />
+    <DbContext.Provider value={db}>
+    <App />
+    </DbContext.Provider>
   </React.StrictMode>
 );
 
