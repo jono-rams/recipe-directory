@@ -14,7 +14,7 @@ import Navbar from './components/Navbar';
 
 function App({ db }) {
   // Fetch recipes from Firestore database
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState(null);
   const [recipesDb] = useState(collection(db, 'recipes'));
 
   useEffect(() => {
@@ -34,12 +34,10 @@ function App({ db }) {
     });
   }, [recipesDb]);
 
-  console.log(recipes);
-
   const route = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<Navbar />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home data={recipes}/>} />
         <Route path='create' element={<Create />} />
         <Route path='search' element={<Search />} />
         <Route path='recipe/:id' element={<Recipe />} />
