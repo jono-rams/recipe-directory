@@ -28,7 +28,7 @@ export default function Search() {
     if (!latestRecipes.current || !searchTerm) return;
     const filtered = latestRecipes.current.filter(recipe => {
       const title = recipe.title.toLowerCase();
-      const term = searchTerm.toLowerCase();
+      const term = searchTerm.trim().toLowerCase();
       return title.includes(term);
     });
     setFilteredRecipes(filtered);
