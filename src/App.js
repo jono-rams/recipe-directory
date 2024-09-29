@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import { collection, onSnapshot } from 'firebase/firestore';
 import { DbContext } from './context/DbContext';
-import { RecipesContext } from './context/recipeContext';
+import { RecipesContext } from './context/RecipeContext';
 
 // Page components
 import Home from './pages/home/Home';

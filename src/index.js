@@ -2,10 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { DbContext } from './dbContext';
-import App from './App';
+
+// contexts
+import { DbContext } from './context/DbContext';
 import { ThemeProvider } from './context/ThemeContext';
 
+// components
+import App from './App';
+
+// styles
 import './index.css';
 
 const firebaseConfig = {

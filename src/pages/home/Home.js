@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 // contexts
-import { RecipesContext } from '../../context/recipeContext'; 
+import { RecipesContext } from '../../context/RecipeContext'; 
 
 // components
 import RecipeList from '../../components/RecipeList';

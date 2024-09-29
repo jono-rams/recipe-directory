@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // contexts
-import { RecipesContext } from '../../context/recipeContext'; 
+import { RecipesContext } from '../../context/RecipeContext'; 
 
 // components
 import RecipeList from '../../components/RecipeList';
