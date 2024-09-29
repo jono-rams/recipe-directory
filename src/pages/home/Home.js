@@ -1,4 +1,4 @@
-import { RecipesContext } from '../../recipeContext'; 
+import { RecipesContext } from '../../context/recipeContext'; 
 import { useContext } from 'react';
 
 // styles

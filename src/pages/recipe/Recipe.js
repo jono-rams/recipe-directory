@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { DbContext } from '../../dbContext';
+import { DbContext } from '../../context/DbContext';
 
 import './Recipe.css';
 import { doc, getDoc } from 'firebase/firestore';

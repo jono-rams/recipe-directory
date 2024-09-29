@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import { collection, onSnapshot } from 'firebase/firestore';
-import { DbContext } from './dbContext';
-import { RecipesContext } from './recipeContext';
+import { DbContext } from './context/DbContext';
+import { RecipesContext } from './context/recipeContext';
 
 // Page components
 import Home from './pages/home/Home';

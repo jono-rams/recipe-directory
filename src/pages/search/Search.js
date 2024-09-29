@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { RecipesContext } from '../../recipeContext'; 
+import { RecipesContext } from '../../context/recipeContext'; 
 
 // styles
 import './Search.css';

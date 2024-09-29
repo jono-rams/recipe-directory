@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import { DbContext } from '../../dbContext';
+import { DbContext } from '../../context/DbContext';
 import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
