@@ -10,7 +10,11 @@ export default function Search() {
   const queryString = useLocation();
   const queryParams = useMemo(() => new URLSearchParams(queryString.search), [queryString.search]);
   const [searchTerm, setSearchTerm] = useState(null);
-
+  
+  useEffect(() => {
+    setSearchTerm(queryParams.get('q'));
+  }, [queryParams]);
+  
   const latestRecipes = useRef(null);
   const recipes = useContext(RecipesContext);
 
@@ -19,10 +23,6 @@ export default function Search() {
   }, [recipes]); 
 
   const [filteredRecipes, setFilteredRecipes] = useState(null);
-
-  useEffect(() => {
-    setSearchTerm(queryParams.get('q'));
-  }, [queryParams]);
 
   useEffect(() => {
     if (!latestRecipes.current || !searchTerm) return;
