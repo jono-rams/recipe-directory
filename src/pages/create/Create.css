@@ -42,12 +42,34 @@
 }
 
 .ing:hover {
-  color: crimson;
-  cursor: pointer;
+  color: crimson !important;
+  cursor: pointer !important;
 }
 
 .btn.disabled {
   cursor: wait;
   width: 130px;
   pointer-events: none;
+}
+
+/* dark mode */
+.create.dark span,
+.create.dark p {
+  color: #ccc;
+}
+
+.create.dark em {
+  color: #eee;
+}
+
+.create.dark input,
+.create.dark textarea {
+  background-color: #555;
+  border-color: #444;
+  color: #ddd;
+}
+
+.create.dark input:focus,
+.create.dark textarea:focus {
+  outline: 2px solid black;
 }

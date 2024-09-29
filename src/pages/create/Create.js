@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 // contexts
 import { useDatabase } from '../../hooks/useDatabase';
+import { useTheme } from '../../hooks/useTheme';
 
 // styles
 import './Create.css';
@@ -53,8 +54,10 @@ export default function Create() {
     setIngredients(prev => new Set([...prev].filter((_, i) => i!== index)));
   }
 
+  const { mode } = useTheme();
+
   return (
-    <div className='create'>
+    <div className={`create ${mode}`}>
       <h2 className="page-title">Add a New Recipe</h2>
 
       <form className='create-form' onSubmit={handleSubmit}>
