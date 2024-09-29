@@ -1,14 +1,14 @@
-import { RecipesContext } from '../../recipeContext'; 
-import { useContext } from 'react';
-
-// styles
-import './Home.css';
+// contexts
+import { useRecipe } from '../../hooks/useRecipe';
 
 // components
 import RecipeList from '../../components/RecipeList';
 
+// styles
+import './Home.css';
+
 export default function Home() {
-  const recipes = useContext(RecipesContext);
+  const recipes = useRecipe();
 
   return (
     <div className='home'>

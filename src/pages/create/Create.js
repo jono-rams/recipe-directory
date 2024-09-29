@@ -1,13 +1,15 @@
-import { useContext, useRef, useState } from 'react';
-import { DbContext } from '../../dbContext';
+import { useRef, useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+
+// contexts
+import { useDatabase } from '../../hooks/useDatabase';
 
 // styles
 import './Create.css';
 
 export default function Create() {
-  const db = useContext(DbContext)
+  const db = useDatabase();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(false);
   const [title, setTitle] = useState('');

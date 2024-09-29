@@ -1,8 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import { collection, onSnapshot } from 'firebase/firestore';
-import { DbContext } from './dbContext';
-import { RecipesContext } from './recipeContext';
+
+// contexts
+import { useDatabase } from './hooks/useDatabase';
+import { RecipesContext } from './context/RecipeContext';
+import { useTheme } from './hooks/useTheme';
+
+// Components
+import Navbar from './components/Navbar';
 
 // Page components
 import Home from './pages/home/Home';
@@ -12,10 +18,9 @@ import Recipe from './pages/recipe/Recipe';
 
 // styles
 import './App.css';
-import Navbar from './components/Navbar';
 
 function App() {
-  const db = useContext(DbContext);
+  const db = useDatabase();
   const [recipes, setRecipes] = useState(null);
   const [error, setError] = useState(null);
   const [recipesDb] = useState(collection(db, 'recipes'));
@@ -42,6 +47,8 @@ function App() {
     
   }, [recipesDb]);
 
+  const { mode } = useTheme();
+
   const route = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<Navbar />}>
@@ -55,7 +62,7 @@ function App() {
 
   return (
     <RecipesContext.Provider value={recipes}>
-      <div className="App">
+      <div className={`App ${mode}`}>
         {!error && <RouterProvider router={route} />}
         {error && <p className='error'>Error: {error}</p>}
       </div>

@@ -1,13 +1,17 @@
 import { useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { DbContext } from '../../dbContext';
-
-import './Recipe.css';
+import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
+
+// contexts
+import { useDatabase } from '../../hooks/useDatabase';
+import { useTheme } from '../../hooks/useTheme';
+
+// styles
+import './Recipe.css';
 
 export default function Recipe() {
   const { id } = useParams();
-  const db = useContext(DbContext)
+  const db = useDatabase();
   const [recipe, setRecipe] = useState(null);
   const [error, setError] = useState(false);
 
@@ -22,8 +26,10 @@ export default function Recipe() {
     })
   }, [db, id])
 
+  const { mode } = useTheme();
+
   return (
-    <div className="recipe">
+    <div className={`recipe ${mode}`}>
       {!recipe && !error && <p className='loading'>Loading recipe details...</p>}
       {error && <p className='error'>Error loading that recipe, it may not exist...</p>}
       {recipe && (

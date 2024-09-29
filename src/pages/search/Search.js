@@ -1,28 +1,32 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { RecipesContext } from '../../recipeContext'; 
+
+// contexts
+import { useRecipe } from '../../hooks/useRecipe';
+
+// components
+import RecipeList from '../../components/RecipeList';
 
 // styles
 import './Search.css';
-import RecipeList from '../../components/RecipeList';
 
 export default function Search() {
   const queryString = useLocation();
   const queryParams = useMemo(() => new URLSearchParams(queryString.search), [queryString.search]);
   const [searchTerm, setSearchTerm] = useState(null);
-
+  
+  useEffect(() => {
+    setSearchTerm(queryParams.get('q'));
+  }, [queryParams]);
+  
   const latestRecipes = useRef(null);
-  const recipes = useContext(RecipesContext);
+  const recipes = useRecipe();
 
   useEffect(() => {
     latestRecipes.current = recipes;
   }, [recipes]); 
 
   const [filteredRecipes, setFilteredRecipes] = useState(null);
-
-  useEffect(() => {
-    setSearchTerm(queryParams.get('q'));
-  }, [queryParams]);
 
   useEffect(() => {
     if (!latestRecipes.current || !searchTerm) return;
