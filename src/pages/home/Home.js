@@ -1,7 +1,5 @@
-import { useContext } from 'react';
-
 // contexts
-import { RecipesContext } from '../../context/RecipeContext'; 
+import { useRecipe } from '../../hooks/useRecipe';
 
 // components
 import RecipeList from '../../components/RecipeList';
@@ -10,7 +8,7 @@ import RecipeList from '../../components/RecipeList';
 import './Home.css';
 
 export default function Home() {
-  const recipes = useContext(RecipesContext);
+  const recipes = useRecipe();
 
   return (
     <div className='home'>

@@ -1,8 +1,8 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // contexts
-import { RecipesContext } from '../../context/RecipeContext'; 
+import { useRecipe } from '../../hooks/useRecipe';
 
 // components
 import RecipeList from '../../components/RecipeList';
@@ -20,7 +20,7 @@ export default function Search() {
   }, [queryParams]);
   
   const latestRecipes = useRef(null);
-  const recipes = useContext(RecipesContext);
+  const recipes = useRecipe();
 
   useEffect(() => {
     latestRecipes.current = recipes;

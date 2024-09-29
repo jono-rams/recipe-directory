@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import { collection, onSnapshot } from 'firebase/firestore';
-import { DbContext } from './context/DbContext';
+
+// contexts
+import { useDatabase } from './hooks/useDatabase';
 import { RecipesContext } from './context/RecipeContext';
 
 // Page components
@@ -15,7 +17,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 
 function App() {
-  const db = useContext(DbContext);
+  const db = useDatabase();
   const [recipes, setRecipes] = useState(null);
   const [error, setError] = useState(null);
   const [recipesDb] = useState(collection(db, 'recipes'));
