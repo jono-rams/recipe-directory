@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import './index.css';
-import App from './App';
 import { DbContext } from './dbContext';
+import App from './App';
+import { ThemeProvider } from './context/ThemeContext';
+
+import './index.css';
 
 const firebaseConfig = {
   apiKey: "YOUR_FIREBASE_API_KEY",
@@ -22,7 +24,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <DbContext.Provider value={db}>
-    <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </DbContext.Provider>
   </React.StrictMode>
 );
