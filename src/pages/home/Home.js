@@ -1,11 +1,13 @@
-import { RecipesContext } from '../../context/recipeContext'; 
 import { useContext } from 'react';
 
-// styles
-import './Home.css';
+// contexts
+import { RecipesContext } from '../../context/recipeContext'; 
 
 // components
 import RecipeList from '../../components/RecipeList';
+
+// styles
+import './Home.css';
 
 export default function Home() {
   const recipes = useContext(RecipesContext);
