@@ -34,5 +34,5 @@ jobs:
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RECIPE_DIRECTORY_2593C }}
-          channelId: 2.0-preview
+          channelId: 2.1-preview
           projectId: recipe-directory-2593c
