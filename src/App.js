@@ -5,6 +5,10 @@ import { collection, onSnapshot } from 'firebase/firestore';
 // contexts
 import { useDatabase } from './hooks/useDatabase';
 import { RecipesContext } from './context/RecipeContext';
+import { useTheme } from './hooks/useTheme';
+
+// Components
+import Navbar from './components/Navbar';
 
 // Page components
 import Home from './pages/home/Home';
@@ -14,7 +18,6 @@ import Recipe from './pages/recipe/Recipe';
 
 // styles
 import './App.css';
-import Navbar from './components/Navbar';
 
 function App() {
   const db = useDatabase();
@@ -44,6 +47,8 @@ function App() {
     
   }, [recipesDb]);
 
+  const { mode } = useTheme();
+
   const route = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<Navbar />}>
@@ -57,7 +62,7 @@ function App() {
 
   return (
     <RecipesContext.Provider value={recipes}>
-      <div className="App">
+      <div className={`App ${mode}`}>
         {!error && <RouterProvider router={route} />}
         {error && <p className='error'>Error: {error}</p>}
       </div>
