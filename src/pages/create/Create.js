@@ -18,18 +18,18 @@ export default function Create() {
   const ingredientInput = useRef(null);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsPending(true);
     try {
-      await addDoc(collection(db, 'recipes'), {
+      addDoc(collection(db, 'recipes'), {
         title,
         method,
         cookingTime: cookingTime.concat(parseInt(cookingTime) !== 1 ? ' minutes' : ' minute'),
         ingredients: [...ingredients]
       }).then(() => {
-        setIsPending(false)
-        navigate('/');
+        navigate('/', {replace: true});
+        navigate(0);
       })
     } catch (error) {
       console.error('Error adding document: ', error);
