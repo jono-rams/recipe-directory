@@ -53,6 +53,10 @@
 }
 
 /* dark mode */
+.create.dark .page-title {
+  color: #ddd;
+}
+
 .create.dark span,
 .create.dark p {
   color: #ccc;
